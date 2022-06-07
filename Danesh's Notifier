@@ -1,0 +1,46 @@
+from tkinter import Tk, Label, Entry, Button
+from tkinter import *
+from PIL import Image, ImageTk
+from plyer import notification
+import time
+from tkinter import messagebox
+
+def get_details():
+    get_title = title_entry.get()
+    get_msg = msg.get()
+    get_time = time1.get()
+    if get_title == " " or get_time == " " or get_time == " ":
+        messagebox.showerror(" Alert",  " all fields are required")
+    else:
+        int_time = int(get_time)
+        min_to_sec = int_time*60
+        messagebox.showinfo(" notifier set", " set notification")
+        time.sleep(min_to_sec)
+        notification.notify(title = get_title, message = get_msg, app_name = "Danesh's notifier", timeout = 10)
+t = Tk()
+t.title(" Danesh's Notifier")
+t.geometry("500x300")
+t_label = Label(t, text = "Danesh's Notifier", font=("poppins",10))
+t_label.place(x =250, y = 12)
+
+title = Label(t, text = 'Title to Notify', font=("poppins",10))
+title.place(x =12, y = 78)
+
+title_entry = Entry(t, width = '5' , font=("poppins",10))
+title_entry.place(x = 200, y = 80, height = 40, width = 200)
+
+m_label = Label(t, text = 'Display Message', font=("poppins",10))
+m_label.place(x =12, y = 120)
+
+msg = Entry(t, width = '5' , font=("poppins",10))
+msg.place(x = 200, y = 128, height = 40, width = 200)
+
+time_label = Label(t, text = 'Set Time', font=("poppins",10))
+time_label.place(x =12, y = 175)
+
+time1 = Entry(t, width="5",font=("poppins",10))
+time1.place(x =200, y = 175, height = 40, width = 200)
+
+B = Button(t, text =" Set Notification", command = get_details)
+B.place(x = 200, y = 250)
+t.mainloop()
